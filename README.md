@@ -4,4 +4,8 @@ Various algorithm and data structure problems solved using Python.
 
 ### Installation
 
-```python setup.py install```
+`python setup.py install`
+
+### Running unit tests
+
+`nosetests`
