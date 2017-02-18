@@ -4,7 +4,7 @@ Reverser is a python app that reverses a string.
 
 ### Running all the unit tests
 
-`nosetests`
+`nosetests -s`
 
 ### Running the app accepting user input
 
