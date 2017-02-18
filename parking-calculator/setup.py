@@ -4,7 +4,7 @@ except ImportError:
     from distutils.core import setup
 
 config = {
-    'description': 'My Project',
+    'description': 'This app calculates parking costs.',
     'author': 'Victor Wibisono',
     'url': 'URL',
     'download_url': 'Where to download it.',
