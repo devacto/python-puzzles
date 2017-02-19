@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Finds the most valuable items to put into a knapsack."""
 
-FILENAME = "test-data-1.csv"
+FILENAME = "test-data-2.csv"
 TOTE_LENGTH = 45
 TOTE_WIDTH = 30
 TOTE_HEIGHT = 35
@@ -27,7 +27,6 @@ def pick(products, capacity):
             j -= products[i - 1]['volume']
     result.reverse()
     return result
-
 
 def bestvalue(index, maxvol):
     """Returns the total price of the most valuable subsequence of the first
@@ -56,4 +55,5 @@ with open(FILENAME, "rb") as f:
         if check_dimension(item['volume']):
             PRODUCTS.append(item)
 
-print pick(PRODUCTS, TOTE_VOLUME)
+# Print the sum of the product ids
+print sum([item['id'] for item in pick(PRODUCTS, TOTE_VOLUME)])
