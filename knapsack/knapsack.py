@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Finds the most valuable items to put into a knapsack."""
 
-FILENAME = "test-data-2.csv"
+FILENAME = "products.csv"
 TOTE_LENGTH = 45
 TOTE_WIDTH = 30
 TOTE_HEIGHT = 35
@@ -33,8 +33,8 @@ def bestvalue(index, maxvol):
     i elements in products whose volume sum to no more than tote volume."""
     if index == 0:
         return 0
-    value = PRODUCTS[index-1]['price']
-    itemvolume = PRODUCTS[index-1]['volume']
+    value = PRODUCTS[index - 1]['price']
+    itemvolume = PRODUCTS[index - 1]['volume']
     if itemvolume > maxvol:
         return bestvalue(index - 1, maxvol)
     else:
