@@ -2,8 +2,11 @@
 """Finds the most valuable items to put into a knapsack."""
 
 import functools
+import sys
 
-FILENAME = "test-data-2.csv"
+sys.setrecursionlimit(80000)
+
+FILENAME = "test-data-1.csv"
 TOTE_LENGTH = 45
 TOTE_WIDTH = 30
 TOTE_HEIGHT = 35
@@ -49,8 +52,8 @@ def bestvalue(index, maxvol):
     i elements in products whose volume sum to no more than tote volume."""
     if index == 0:
         return 0
-    value = PRODUCTS[index - 1]['price']
-    itemvolume = PRODUCTS[index - 1]['volume']
+    value = PRODUCTS[index - 1][2]
+    itemvolume = PRODUCTS[index - 1][1]
     if itemvolume > maxvol:
         return bestvalue(index - 1, maxvol)
     else:
@@ -64,7 +67,7 @@ def pick(products, capacity):
     for i in xrange(len(products), 0, -1):
         if bestvalue(i, j) != bestvalue(i - 1, j):
             result.append(products[i - 1])
-            j -= products[i - 1]['volume']
+            j -= products[i - 1][1]
     result.reverse()
     return result
 
@@ -72,15 +75,9 @@ with open(FILENAME, "rb") as f:
     for line in f:
         data = [int(e) for e in line.strip().split(",")]
         volume = data[2] * data[3] * data[4]
-        item = {'id': data[0],
-                'price': data[1],
-                'length': data[2],
-                'width': data[3],
-                'height': data[4],
-                'weight': data[5],
-                'volume': volume}
-        if check_dimension(item['volume']):
+        item = (data[0], volume, data[1], data[5]) # (ID, volume, price, weight)
+        if check_dimension(item[1]):
             PRODUCTS.append(item)
 
 # Print the sum of the product ids
-print sum([item['id'] for item in pick(PRODUCTS, TOTE_VOLUME)])
+print sum([item[0] for item in pick(PRODUCTS, TOTE_VOLUME)])
